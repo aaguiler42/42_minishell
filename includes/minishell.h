@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/23 17:28:50 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:48:45 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,18 @@
 # include <readline/history.h>
 # include <stdlib.h>
 
+typedef struct s_command
+{
+	int		n_args;
+	char	**args;
+}	t_command;
+
 typedef	struct s_table
 {
-	int		n_commands;
-	char	**commands;
+	int			n_commands;
+	char		**commands;
+	t_command	**commands_args;
+
 }	t_table;
 
 int		ft_parse_line(char *line, t_table *table);

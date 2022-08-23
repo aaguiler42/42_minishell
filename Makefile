@@ -1,6 +1,7 @@
 NAME		= minishell
 
-SRCS		= src/main.c src/utils.c src/minilibft.c
+SRCS		= src/main.c src/utils.c src/minilibft.c \
+				src/parse_command.c
 
 OBJS		= ${SRCS:.c=.o}
 
