@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/17 15:50:47 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:28:50 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@ typedef	struct s_table
 
 int		ft_parse_line(char *line, t_table *table);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-
+char	*ft_strtrim(char *s1, char *set);
+int		ft_strlen (char *s);
 #endif

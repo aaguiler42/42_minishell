@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/16 17:12:10 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:29:52 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	main(int argc, char **argv, char **env)
 	while(s)
 	{
 		ft_parse_line(s, &table);
-		free(s);
 		s = readline("[JUAN]~ ");
 	}
 }

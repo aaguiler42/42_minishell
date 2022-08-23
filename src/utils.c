@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/17 16:16:37 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/08/23 17:31:38 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	ft_count_commands(char *line)
 			quotes = 0;
 		else if (line[i] == '|' && !quotes)
 			n_commands++;
+		if (!quotes && i && line[i] == '|' && line[i - 1] == '|')
+			return (0);
 		i++;
 	}
 	if (quotes)
@@ -47,7 +49,7 @@ int	ft_get_command_len(char *line, int start)
 
 	quotes = 0;
 	i = 0;
-	while (line[start + i] != '|' && line[start + i] && !quotes)
+	while (line[start + i])
 	{
 		if (line[start + i] == '\"' && quotes == 0)
 			quotes = 2;
@@ -57,6 +59,8 @@ int	ft_get_command_len(char *line, int start)
 			quotes = 1;
 		else if (line[start + i] == '\'' && quotes == 1)
 			quotes = 0;
+		if (line[start + i] == '|' && !quotes)
+			break;
 		i++;
 	}
 	return (i);
@@ -80,8 +84,19 @@ int	ft_parse_line(char *line, t_table *table)
 	int	len;
 	int	i;
 
+	line = ft_strtrim(line, " ");
+	if (line[0] == '|' || line[ft_strlen(line) - 1] == '|')
+	{
+		printf("SYNTAX ERROR\n");
+		return (0);
+	}
 	table->n_commands = ft_count_commands(line);
-	//Controlar error comillas y dobles barras
+	printf("NCOM %d\n", table->n_commands);
+	if (!table->n_commands)
+	{
+		printf("SYNTAX ERROR\n");
+		return (0);
+	}
 	table->commands = (char **)malloc((table->n_commands + 1) * sizeof(char *));
 	table->commands[table->n_commands] = NULL;
 	start = 0;
@@ -90,7 +105,6 @@ int	ft_parse_line(char *line, t_table *table)
 	while (line[start + len])
 	{
 		start += len;
-		//Controlar que pueda acabar con barra o empezar, trim al final y al principio
 		if (line[start] == '|')
 			start++;
 		len = ft_get_command_len(line, start);
@@ -100,5 +114,6 @@ int	ft_parse_line(char *line, t_table *table)
 		i++;
 	}
 	ft_print_table(table->commands);
+	free(line);
 	return (0);
 }
