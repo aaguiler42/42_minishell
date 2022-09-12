@@ -3,3 +3,4 @@ minishell
 *.a
 a.out
 .DS_Store
+.vscode
