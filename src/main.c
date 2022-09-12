@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/23 17:29:52 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:33:51 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	(void)env;
 	s = readline("[JUAN]~ ");
-	while(s)
+	while (s)
 	{
 		ft_parse_line(s, &table);
 		s = readline("[JUAN]~ ");

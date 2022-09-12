@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/12 20:31:16 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:37:09 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_get_command_len(char *line, int start)
 		else if (line[start + i] == '\'' && quotes == 1)
 			quotes = 0;
 		if (line[start + i] == '|' && !quotes)
-			break;
+			break ;
 		i++;
 	}
 	return (i);
@@ -71,14 +71,15 @@ void	ft_print_table(t_table *table)
 	int	i;
 
 	i = 0;
-	while(i < table->n_commands)
+	while (i < table->n_commands)
 	{
 		printf("%s.\n", table->commands[i]);
 		i++;
 	}
 }
 
-int	ft_printf(char *msg){
+int	ft_printf(char *msg)
+{
 	printf("%s", msg);
 	return (0);
 }
@@ -95,7 +96,7 @@ int	ft_parse_line(char *line, t_table *table)
 	table->n_commands = ft_count_commands(line);
 	if (!table->n_commands)
 		return (ft_printf("SYNTAX ERROR\n"));
-	table->commands = (char **)ft_calloc((table->n_commands + 1), sizeof(char *));
+	table->commands = ft_calloc((table->n_commands + 1), sizeof(char *));
 	if (!table->commands)
 		return (0);
 	start = 0;

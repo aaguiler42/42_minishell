@@ -6,14 +6,14 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:50:10 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/12 19:53:41 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:34:15 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stddef.h>
 #include <stdlib.h>
 
-int	ft_strlen (char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -51,7 +51,7 @@ char	*ft_substr(char *s, int start, int len)
 	return (sbstr);
 }
 
-char	*ft_strchr (char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
 	char	*p;
 
