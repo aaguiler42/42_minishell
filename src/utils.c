@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/23 17:52:36 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/12 20:31:16 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,21 @@ int	ft_get_command_len(char *line, int start)
 	return (i);
 }
 
-void	ft_print_table(char **table)
+void	ft_print_table(t_table *table)
 {
 	int	i;
 
 	i = 0;
-	while(table[i])
+	while(i < table->n_commands)
 	{
-		printf("%s.\n", table[i]);
+		printf("%s.\n", table->commands[i]);
 		i++;
 	}
+}
+
+int	ft_printf(char *msg){
+	printf("%s", msg);
+	return (0);
 }
 
 int	ft_parse_line(char *line, t_table *table)
@@ -86,25 +91,13 @@ int	ft_parse_line(char *line, t_table *table)
 
 	line = ft_strtrim(line, " ");
 	if (line[0] == '|' || line[ft_strlen(line) - 1] == '|')
-	{
-		printf("SYNTAX ERROR\n");
-		return (0);
-	}
+		return (ft_printf("SYNTAX ERROR\n"));
 	table->n_commands = ft_count_commands(line);
-	printf("NCOM %d\n", table->n_commands);
 	if (!table->n_commands)
-	{
-		printf("SYNTAX ERROR\n");
-		return (0);
-	}
-	table->commands = (char **)malloc((table->n_commands + 1) * sizeof(char *));
+		return (ft_printf("SYNTAX ERROR\n"));
+	table->commands = (char **)ft_calloc((table->n_commands + 1), sizeof(char *));
 	if (!table->commands)
 		return (0);
-	table->commands[table->n_commands] = NULL;
-	table->commands_args = (t_command **)malloc((table->n_commands + 1) * sizeof(t_command *));
-	if (!table->commands_args)
-		return (0);
-	table->commands_args[table->n_commands] = NULL;
 	start = 0;
 	len = 0;
 	i = 0;
@@ -115,10 +108,9 @@ int	ft_parse_line(char *line, t_table *table)
 			start++;
 		len = ft_get_command_len(line, start);
 		table->commands[i] = ft_substr(line, start, len);
-		table->commands_args[i] = ft_parse_command(table->commands[i]);
 		i++;
 	}
-	ft_print_table(table->commands);
+	ft_print_table(table);
 	free(line);
 	return (0);
 }

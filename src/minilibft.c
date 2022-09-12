@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:50:10 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/08/23 16:23:20 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/12 19:53:41 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,20 @@ char	*ft_strtrim(char *s1, char *set)
 	ft_asign_value (s1, s2, i, len);
 	free(s1);
 	return (s2);
+}
+
+void	*ft_calloc(int count, int size)
+{
+	void	*rtr;
+	int		i;
+
+	if (count + size < count || count + size < size)
+		return (0);
+	rtr = malloc(count * size);
+	if (!rtr)
+		return (0);
+	i = 0;
+	while (i < size)
+		((unsigned char *)rtr)[i++] = 0;
+	return (rtr);
 }

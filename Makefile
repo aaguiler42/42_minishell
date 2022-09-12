@@ -1,7 +1,6 @@
 NAME		= minishell
 
 SRCS		= src/main.c src/utils.c src/minilibft.c \
-				src/parse_command.c
 
 OBJS		= ${SRCS:.c=.o}
 
@@ -9,7 +8,7 @@ CC			= gcc
 
 INCLUDES	= -I includes
 
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror -g
 
 RM			= rm -f
 
@@ -19,7 +18,7 @@ all:	${NAME}
 	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDES}
 
 ${NAME}: ${OBJS}
-	${CC} ${OBJS} ${LIBS} ${INCLUDES} -lreadline -o ${NAME}
+	${CC} ${OBJS} ${LIBS} ${INCLUDES} -lreadline -o ${NAME} -g
 
 clean:
 	${RM} ${OBJS}
