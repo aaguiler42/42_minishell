@@ -6,12 +6,25 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 20:54:42 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:26:08 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+
+/*
+if (line[i] == '\"' && quotes == 0)
+	quotes = 2;
+else if (line[i] == '\"' && quotes == 2)
+	quotes = 0;
+else if (line[i] == '\'' && quotes == 0)
+	quotes = 1;
+else if (line[i] == '\'' && quotes == 1)
+	quotes = 0;
+else if (line[i] == '|' && !quotes)
+	n_commands++;
+*/
 
 int	ft_count_commands(char *line)
 {
@@ -19,25 +32,19 @@ int	ft_count_commands(char *line)
 	int	n_commands;
 	int	i;
 
-	if (line[0] == '|')
-		return (0);
 	quotes = 0;
 	n_commands = 1;
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] == '\"' && quotes == 0)
-			quotes = 2;
-		else if (line[i] == '\"' && quotes == 2)
-			quotes = 0;
-		else if (line[i] == '\'' && quotes == 0)
-			quotes = 1;
-		else if (line[i] == '\'' && quotes == 1)
-			quotes = 0;
-		else if (line[i] == '|' && !quotes)
+		if (line[i] == quotes)
+		 	quotes = 0;
+		 else if (!quotes && ft_strchr("\"'", line[i]))
+		 	quotes = line[i];
+		else if (!quotes && line[i] == '|')
 			n_commands++;
-		if (!quotes && line[i] == '|' && (!line[i + 1]
-				|| (line[i + 1] && line[i + 1] == '|')))
+		if (line[0] == '|' || (!quotes && line[i] == '|' && (!line[i + 1]
+				|| (line[i + 1] && line[i + 1] == '|'))))
 			return (0);
 		i++;
 	}

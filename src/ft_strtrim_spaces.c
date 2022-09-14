@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:17:53 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 21:05:57 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:11:17 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_strtrim_and_free(char *s1, char *set)
 
 	s2 = ft_strtrim(s1, set);
 	free(s1);
-	if (!s2)
-		return (NULL);
 	return (s2);
 }
 
