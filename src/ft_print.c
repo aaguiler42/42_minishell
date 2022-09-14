@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_trim.c                                          :+:      :+:    :+:   */
+/*   ft_print.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/14 19:17:53 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 19:27:46 by aaguiler         ###   ########.fr       */
+/*   Created: 2022/09/14 20:49:53 by aaguiler          #+#    #+#             */
+/*   Updated: 2022/09/14 20:50:26 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
 #include "libft.h"
 
-char	*ft_strtrim_spaces(char *s)
+void	ft_print_commands(char **commands)
 {
-	//Free in trim
-	s = ft_strtrim(s, " ");
-	if (s)
-		s = ft_strtrim(s, "\t");
-	if (s)
-		s = ft_strtrim(s, "\n");
-	if (s)
-		s = ft_strtrim(s, "\v");
-	if (s)
-		s = ft_strtrim(s, "\f");
-	if (s)
-		s = ft_strtrim(s, "\r");
-	return(s);
+	int	i;
+
+	i = 0;
+	while (commands[i])
+	{
+		ft_printf("%s.\n", commands[i]);
+		i++;
+	}
 }

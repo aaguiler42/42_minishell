@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 19:26:01 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 20:54:42 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_count_commands(char *line)
 	int	n_commands;
 	int	i;
 
-	if(line[0] == '|')
+	if (line[0] == '|')
 		return (0);
 	quotes = 0;
 	n_commands = 1;
@@ -70,42 +70,12 @@ int	ft_get_command_len(char *line, int start)
 	return (i);
 }
 
-void	ft_print_table(t_table *table)
-{
-	int	i;
-
-	i = 0;
-	while (i < table->n_commands)
-	{
-		printf("%s.\n", table->commands[i]);
-		i++;
-	}
-}
-
-int	ft__printf(char *msg)
-{
-	ft_printf("%s", msg);
-	return (0);
-}
-
-int	ft_parse_line(char *line, t_table *table)
+int	ft_parse_line(char *line, char **commands)
 {
 	int	start;
 	int	len;
 	int	i;
 
-	line = ft_strtrim_spaces(line);
-	if (!line)
-		return (0);
-	table->n_commands = ft_count_commands(line);
-	if (!table->n_commands)
-		return (ft__printf("SYNTAX ERROR\n"));
-	table->commands = ft_calloc((table->n_commands + 1), sizeof(char *));
-	if (!table->commands)
-	{
-		free(line);
-		return(0);
-	}
 	start = 0;
 	len = 0;
 	i = 0;
@@ -115,9 +85,9 @@ int	ft_parse_line(char *line, t_table *table)
 		if (line[start] == '|')
 			start++;
 		len = ft_get_command_len(line, start);
-		table->commands[i++] = ft_substr(line, start, len);
+		commands[i++] = ft_substr(line, start, len);
+		//Liberar commandos si falla algun malloc
 	}
-	ft_print_table(table);
-	free(line);
+	free(line);	
 	return (1);
 }

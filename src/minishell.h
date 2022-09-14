@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 19:26:37 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 20:50:39 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,17 @@ typedef struct s_table
 
 }	t_table;
 
-int		ft_parse_line(char *line, t_table *table);
+//Utils
+int		ft_parse_line(char *line, char **commands);
+int		ft_count_commands(char *line);
+
+//Free
+char	**ft_free_line(char *line);
+
+//Trim
 char	*ft_strtrim_spaces(char *s);
+
+//Print
+void	ft_print_commands(char **commands);
 
 #endif

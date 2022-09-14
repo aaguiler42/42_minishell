@@ -6,28 +6,36 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 18:55:10 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 20:51:38 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include "libft.h"
 
-int	ft_free_line(char *s)
+char	**ft_get_commands(char *line)
 {
-	free(s);
-	return(1);
-}
+	char	**commands;
+	int		n_commands;
 
-int	ft_free_table(t_table *table)
-{
-	free(table->commands);
-	return(1);
+	line = ft_strtrim_spaces(line);
+	if (!line)
+		return (NULL);
+	n_commands = ft_count_commands(line);
+	if (!n_commands)
+		return (ft_free_line(line));
+	commands = ft_calloc((n_commands + 1), sizeof(char *));
+	if (!commands)
+		return (ft_free_line(line));
+	if (!ft_parse_line(line, commands))
+		return (ft_free_line(line));
+	return (commands);
 }
 
 int	main(int argc, char **argv, char **env)
 {
-	t_table		table;
-	char		*line;
+	char	**commands;
+	char	*line;
 
 	(void)argc;
 	(void)argv;
@@ -35,10 +43,14 @@ int	main(int argc, char **argv, char **env)
 	line = readline("[JUAN]~ ");
 	while (line)
 	{
-		if(!ft_parse_line(line, &table))
-			return (ft_free_line(line));
+		commands = ft_get_commands(line);
+		if (!commands)
+			return (1);
+		ft_print_commands(commands);
+		// Aquí se ejecutan los comandos
+		free(commands);
 		line = readline("[JUAN]~ ");
 		if (!line)
-			return(ft_free_table(&table));
+			return (1);
 	}
 }

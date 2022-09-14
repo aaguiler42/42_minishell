@@ -1,6 +1,7 @@
 NAME		= minishell
 
-SRCS		= src/main.c src/utils.c src/ft_trim.c \
+SRCS		= src/main.c src/utils.c src/ft_strtrim_spaces.c src/ft_free.c \
+				src/ft_print.c
 
 OBJS		= ${SRCS:.c=.o}
 
