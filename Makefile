@@ -1,12 +1,12 @@
 NAME		= minishell
 
-SRCS		= src/main.c src/utils.c src/minilibft.c \
+SRCS		= src/main.c src/utils.c src/ft_trim.c \
 
 OBJS		= ${SRCS:.c=.o}
 
 CC			= gcc
 
-INCLUDES	= -I includes
+INCLUDES	= -I libft -L libft -l ft
 
 CFLAGS		= -Wall -Wextra -Werror -g
 
@@ -15,10 +15,10 @@ RM			= rm -f
 all:	${NAME}
 
 %.o: %.c
-	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDES}
+	${CC} ${CFLAGS} -o $@ -c $< -I libft
 
 ${NAME}: ${OBJS}
-	${CC} ${OBJS} ${LIBS} ${INCLUDES} -lreadline -o ${NAME} -g
+	${CC} ${OBJS} ${LIBS} -lreadline -o ${NAME} -g ${INCLUDES}
 
 clean:
 	${RM} ${OBJS}

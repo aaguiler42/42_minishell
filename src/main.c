@@ -6,24 +6,39 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/12 20:33:51 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 18:55:10 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+int	ft_free_line(char *s)
+{
+	free(s);
+	return(1);
+}
+
+int	ft_free_table(t_table *table)
+{
+	free(table->commands);
+	return(1);
+}
+
 int	main(int argc, char **argv, char **env)
 {
 	t_table		table;
-	char		*s;
+	char		*line;
 
 	(void)argc;
 	(void)argv;
 	(void)env;
-	s = readline("[JUAN]~ ");
-	while (s)
+	line = readline("[JUAN]~ ");
+	while (line)
 	{
-		ft_parse_line(s, &table);
-		s = readline("[JUAN]~ ");
+		if(!ft_parse_line(line, &table))
+			return (ft_free_line(line));
+		line = readline("[JUAN]~ ");
+		if (!line)
+			return(ft_free_table(&table));
 	}
 }
