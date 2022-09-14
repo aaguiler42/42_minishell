@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 21:26:08 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/14 21:35:17 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ int	ft_count_commands(char *line)
 	quotes = 0;
 	n_commands = 1;
 	i = 0;
+	if (line[0] == '|' || line[ft_strlen(line) - 1] == '|')
+		return (0);
 	while (line[i])
 	{
 		if (line[i] == quotes)
@@ -43,8 +45,7 @@ int	ft_count_commands(char *line)
 		 	quotes = line[i];
 		else if (!quotes && line[i] == '|')
 			n_commands++;
-		if (line[0] == '|' || (!quotes && line[i] == '|' && (!line[i + 1]
-				|| (line[i + 1] && line[i + 1] == '|'))))
+		if (!quotes && line[i] == '|' && line[i + 1] == '|')
 			return (0);
 		i++;
 	}
