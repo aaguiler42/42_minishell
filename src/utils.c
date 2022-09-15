@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 21:35:17 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/15 17:56:00 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int	ft_count_commands(char *line)
 	while (line[i])
 	{
 		if (line[i] == quotes)
-		 	quotes = 0;
-		 else if (!quotes && ft_strchr("\"'", line[i]))
-		 	quotes = line[i];
+			quotes = 0;
+		else if (!quotes && ft_strchr("\"'", line[i]))
+			quotes = line[i];
 		else if (!quotes && line[i] == '|')
 			n_commands++;
 		if (!quotes && line[i] == '|' && line[i + 1] == '|')
@@ -96,6 +96,6 @@ int	ft_parse_line(char *line, char **commands)
 		commands[i++] = ft_substr(line, start, len);
 		//Liberar commandos si falla algun malloc
 	}
-	free(line);	
+	free(line);
 	return (1);
 }

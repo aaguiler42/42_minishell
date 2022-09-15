@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/14 20:50:39 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/15 18:50:19 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_table
 {
