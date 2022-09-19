@@ -6,12 +6,14 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/15 19:50:30 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/19 20:58:58 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include "libft.h"
+
+t_list	*g_env_vars = NULL;
 
 char	**ft_get_commands(char *line)
 {
@@ -32,7 +34,8 @@ char	**ft_get_commands(char *line)
 	return (commands);
 }
 
-void c_handler(int dummy) {
+void	c_handler(int dummy)
+{
 	(void)dummy;
 	write(1, "\n", 1);
 	rl_on_new_line();
@@ -47,7 +50,7 @@ int	main(int argc, char **argv, char **env)
 
 	(void)argc;
 	(void)argv;
-	(void)env;
+	ft_get_env(env);
 	signal(SIGINT, c_handler);
 	while (1)
 	{
