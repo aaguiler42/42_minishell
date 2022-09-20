@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:06 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/19 21:31:10 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/20 15:37:30 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 extern t_list	*g_env_vars;
 
-int	ft_get_env(char **env)
+void	ft_get_env(char **env)
 {
 	int		i;
 	char	*aux;
@@ -26,15 +26,18 @@ int	ft_get_env(char **env)
 	{
 		aux = ft_strdup(env[i]);
 		if (!aux)
-			//Free list
+		{
+			ft_lstclear(&g_env_vars, free);
+			exit(1);
+		}
 		list_aux = ft_lstnew(aux);
 		if (!list_aux)
 		{
-			//Liberar lista
+			ft_lstclear(&g_env_vars, free);
 			free(aux);
+			exit(1);
 		}
 		ft_lstadd_back(&g_env_vars, list_aux);
-		printf("%s\n", env[i++]);
+		i++;
 	}
-	return (0);
 }

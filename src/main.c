@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/19 20:58:58 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/20 15:36:39 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,14 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
+	//ft_lstiter(g_env_vars, ft_printf);
 	signal(SIGINT, c_handler);
 	while (1)
 	{
 		line = readline("[JUAN]~ ");
 		if (!line)
 			break ;
-		add_history (line);
+		add_history(line);
 		commands = ft_get_commands(line);
 		if (!commands)
 			return (1);
@@ -65,5 +66,6 @@ int	main(int argc, char **argv, char **env)
 		// Aquí se ejecutan los comandos
 		free(commands);
 	}
+	ft_lstclear(&g_env_vars, free);
 	clear_history();
 }
