@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/20 15:32:17 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/20 17:01:07 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,22 @@
 # include <readline/history.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include "libft.h"
 
-typedef struct s_table
+# define TYPE_FILE_READ 0
+# define TYPE_FILE_WRITE 1
+# define TYPE_COMMAND 2
+
+typedef struct s_command
 {
-	int			n_commands;
-	char		**commands;
-
-}	t_table;
+	int			type;
+	char		*command;
+}	t_command;
 
 //Utils
-int		ft_parse_line(char *line, char **commands);
 int		ft_count_commands(char *line);
+int		ft_get_command_len(char *line, int start);
+t_list	*ft_get_commands(char *line);
 
 //Free
 char	**ft_free_line(char *line);

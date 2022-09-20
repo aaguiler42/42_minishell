@@ -6,12 +6,11 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:06 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/20 15:37:30 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/20 16:58:01 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 
 extern t_list	*g_env_vars;
 

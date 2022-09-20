@@ -6,33 +6,13 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/20 15:36:39 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/20 18:07:19 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include "libft.h"
 
 t_list	*g_env_vars = NULL;
-
-char	**ft_get_commands(char *line)
-{
-	char	**commands;
-	int		n_commands;
-
-	line = ft_strtrim_spaces(line);
-	if (!line)
-		return (NULL);
-	n_commands = ft_count_commands(line);
-	if (!n_commands)
-		return (ft_free_line(line));
-	commands = ft_calloc((n_commands + 1), sizeof(char *));
-	if (!commands)
-		return (ft_free_line(line));
-	if (!ft_parse_line(line, commands))
-		return (ft_free_line(line));
-	return (commands);
-}
 
 void	c_handler(int dummy)
 {
@@ -45,13 +25,12 @@ void	c_handler(int dummy)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	**commands;
+	t_list	*commands;
 	char	*line;
 
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
-	//ft_lstiter(g_env_vars, ft_printf);
 	signal(SIGINT, c_handler);
 	while (1)
 	{
@@ -61,10 +40,8 @@ int	main(int argc, char **argv, char **env)
 		add_history(line);
 		commands = ft_get_commands(line);
 		if (!commands)
-			return (1);
-		ft_print_commands(commands);
+			break ;
 		// Aquí se ejecutan los comandos
-		free(commands);
 	}
 	ft_lstclear(&g_env_vars, free);
 	clear_history();
