@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/20 17:01:07 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/22 16:29:22 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_command
 int		ft_count_commands(char *line);
 int		ft_get_command_len(char *line, int start);
 t_list	*ft_get_commands(char *line);
+int		ft_check_errors(char *line);
 
 //Free
 char	**ft_free_line(char *line);

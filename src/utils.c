@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/20 20:03:57 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/22 17:28:33 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@ int	ft_check_errors(char *line)
 	int	n_commands;
 	int	i;
 
-	line = ft_strtrim_spaces(line);
-	if (!line)
-		return (0);
 	if (line[0] == '|' || line[ft_strlen(line) - 1] == '|')
 		return (0);
 	quotes = 0;
@@ -65,7 +62,7 @@ int	ft_get_command_len(char *line, int start)
 	return (i);
 }
 
-t_list		*ft_create_command(char *line, int start, int len)
+t_list	*ft_create_command(char *line, int start, int len)
 {
 	t_command	*command;
 	char		*bare_command;
@@ -77,7 +74,7 @@ t_list		*ft_create_command(char *line, int start, int len)
 	command = ft_calloc(sizeof(t_command *), 1);
 	if (!command)
 	{
-		free(bare_command);	
+		free(bare_command);
 		return (NULL);
 	}
 	command->type = TYPE_COMMAND;
@@ -108,11 +105,6 @@ t_list	*ft_get_commands(char *line)
 	int			start;
 	int			len;
 
-	if (!ft_check_errors(line))
-	{
-		free(line);
-		return (NULL);
-	}
 	start = 0;
 	len = 0;
 	commands = NULL;
@@ -126,7 +118,8 @@ t_list	*ft_get_commands(char *line)
 		if (!list_aux)
 		{
 			ft_lstclear(&commands, ft_free_list);
-			break ;
+			free(line);
+			return (NULL);
 		}
 		ft_lstadd_back(&commands, list_aux);
 	}
