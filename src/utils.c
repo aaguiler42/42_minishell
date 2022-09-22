@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/22 17:28:33 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:45:15 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,15 +89,6 @@ t_list	*ft_create_command(char *line, int start, int len)
 	return (list_aux);
 }
 
-void	ft_free_list(void *content)
-{
-	t_command	*command;
-
-	command = (t_command *)content;
-	free(command->command);
-	free(command);
-}
-
 t_list	*ft_get_commands(char *line)
 {
 	t_list		*commands;
@@ -124,5 +115,6 @@ t_list	*ft_get_commands(char *line)
 		ft_lstadd_back(&commands, list_aux);
 	}
 	free(line);
+	ft_lstiter(commands, ft_substitute_env);
 	return (commands);
 }

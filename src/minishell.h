@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/22 16:29:22 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/22 18:45:25 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int		ft_check_errors(char *line);
 
 //Free
 char	**ft_free_line(char *line);
+void	ft_free_list(void *content);
 
 //Trim
 char	*ft_strtrim_spaces(char *s);
@@ -47,5 +48,6 @@ void	ft_print_commands(char **commands);
 
 //Env
 void	ft_get_env(char **env);
+void	ft_substitute_env(void *list_elem);
 
 #endif

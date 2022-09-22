@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+         #
+#    By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/06/22 19:20:55 by ngonzale         ###   ########.fr        #
+#    Updated: 2022/09/22 19:06:11 by aaguiler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_DIR		:= src
 OBJ_DIR		:= obj
 
 IS_DIR		:= ft_is
-IS_NAMES	:= ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint
+IS_NAMES	:= ft_isalnum ft_isalpha ft_isascii ft_isdigit ft_isprint \
+		  	   ft_isspace
 IS_FILES	:= $(addprefix $(IS_DIR)/, $(IS_NAMES)) 
 
 LST_DIR		:= ft_lst
