@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/22 20:09:37 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:24:04 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,9 @@ char	*ft_get_line(void)
 	return (line);
 }
 
-void	print_list(void *list)
+void	ft_leaks(void)
 {
-	t_command	*command;
-
-	command = (t_command *)list;
-	printf("%s\n", command->command);
+	system("leaks -q minishell");
 }
 
 int	main(int argc, char **argv, char **env)
@@ -55,6 +52,7 @@ int	main(int argc, char **argv, char **env)
 	t_list	*commands;
 	char	*line;
 
+	atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
@@ -69,6 +67,7 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		ft_lstiter(commands, print_list);
 		// Aquí se ejecutan los comandos
+		ft_lstclear(&commands, ft_free_list);
 	}
 	ft_lstclear(&g_env_vars, free);
 	clear_history();

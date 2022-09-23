@@ -6,11 +6,12 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 20:49:53 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/15 17:56:10 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/23 17:19:20 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "minishell.h"
 
 void	ft_print_commands(char **commands)
 {
@@ -22,4 +23,12 @@ void	ft_print_commands(char **commands)
 		ft_printf("%s.\n", commands[i]);
 		i++;
 	}
+}
+
+void	print_list(void *list)
+{
+	t_command	*command;
+
+	command = (t_command *)list;
+	printf("%s\n", command->command);
 }
