@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:06 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/23 17:24:00 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/24 13:52:10 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ char	*ft_get_env_value(char *env)
 			&& content[ft_strlen(env)] == '=')
 		{
 			len = ft_strlen(content) - ft_strlen(env) - 1;
-			return (ft_substr(content, ft_strlen(env) + 1, len));//
+			return (ft_substr(content, ft_strlen(env) + 1, len));
 		}
 		env_vars = env_vars->next;
 	}
@@ -70,18 +70,19 @@ char	*ft_get_cmd(char *command, int cont, int len, char *env)
 	char	*command_aux;
 	char	*final_command;
 
-	c1 = ft_substr(command, 0, cont);//
-	c3 = ft_substr(command, cont + len + 1, ft_strlen(command) - cont - len - 1);//
+	c1 = ft_substr(command, 0, cont);
+	c3 = ft_substr(command, cont + len + 1,
+			ft_strlen(command) - cont - len - 1);
 	free(command);
 	if (env)
 	{
-		command_aux = ft_strjoin(c1, env);//
-		final_command = ft_strjoin(command_aux, c3);//
+		command_aux = ft_strjoin(c1, env);
+		final_command = ft_strjoin(command_aux, c3);
 		free(command_aux);
 		free(env);
 	}
 	else
-		final_command = ft_strjoin(c1, c3);//
+		final_command = ft_strjoin(c1, c3);
 	free(c1);
 	free(c3);
 	return (final_command);
@@ -102,8 +103,7 @@ char	*ft_get_command_after_env(char *command)
 			while (command[i + len + 1] && ft_isalnum(command[i + len + 1]))
 				len++;
 			env_name = ft_substr(command, i + 1, len);
-			//Proteger malloc
-			command = ft_get_cmd(command, i, len, ft_get_env_value(env_name));//
+			command = ft_get_cmd(command, i, len, ft_get_env_value(env_name));
 			free(env_name);
 			i = -1;
 		}
@@ -125,6 +125,8 @@ void	ft_substitute_env(void *list_elem)
 			&& !ft_isspace(content->command[i + 1]))
 		{
 			content->command = ft_get_command_after_env(content->command);
+			if (!content->command)
+				content->command = ft_strdup("Malloc have failed");
 			break ;
 		}
 		i++;
