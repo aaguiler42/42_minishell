@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/23 17:18:38 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/25 11:25:58 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**ft_free_line(char *line);
 void	ft_free_list(void *content);
 
 //Trim
-char	*ft_strtrim_spaces(char *s);
+char	*ft_strtrim_spaces_quotes(char *s);
 
 //Print
 void	ft_print_commands(char **commands);

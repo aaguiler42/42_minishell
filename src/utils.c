@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/24 13:42:58 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/25 11:26:00 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ t_list	*ft_create_command(char *line, int start, int len)
 	char		*bare_command;
 	t_list		*list_aux;
 
-	bare_command = ft_strtrim_spaces(ft_substr(line, start, len));
+	bare_command = ft_strtrim_spaces_quotes(ft_substr(line, start, len));
 	if (!bare_command)
 		return (NULL);
 	command = ft_calloc(sizeof(t_command *), 1);
