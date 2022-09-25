@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 11:25:48 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/25 12:06:20 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*ft_get_line(void)
 	if (!ft_check_errors(line))
 	{
 		free(line);
-		return (NULL);
+		line = ft_strdup("Syntax error");
 	}
 	return (line);
 }
@@ -57,6 +57,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argv;
 	ft_get_env(env);
 	signal(SIGINT, c_handler);
+	signal(SIGQUIT, c_handler);
 	while (1)
 	{
 		line = ft_get_line();

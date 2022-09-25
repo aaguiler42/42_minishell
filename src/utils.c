@@ -6,7 +6,7 @@
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 11:26:00 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/09/25 12:14:09 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	ft_check_errors(char *line)
 	i = 0;
 	while (line[i])
 	{
+		if ((line[i] == '\\' || line[i] == ';') && !quotes)
+			return (0);
 		if (line[i] == quotes)
 			quotes = 0;
 		else if (!quotes && ft_strchr("\"'", line[i]))
