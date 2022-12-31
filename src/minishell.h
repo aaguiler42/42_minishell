@@ -59,5 +59,6 @@ void	ft_export(char *env);
 void	ft_unset(char *env_name);
 void	ft_pwd(void);
 void	ft_cd(char *path);
+void	ft_echo(int argc, char **argv);
 
 #endif

@@ -80,3 +80,26 @@ void	ft_cd(char *path)
 	env = ft_strjoin("PWD=", buffer);
 	ft_export(env);
 }
+
+void	ft_echo(int argc, char **argv)
+{
+	int	i;
+	int	n;
+
+	n = 0;
+	i = 1;
+	if (argc > 1 && !ft_strcmp(argv[1], "-n"))
+	{
+		n = 1;
+		i++;
+	}
+	while (i < argc)
+	{
+		ft_printf("%s", argv[i]);
+		if (i < argc - 1)
+			ft_printf(" ");
+		i++;
+	}
+	if (!n)
+		ft_printf("\n");
+}
