@@ -57,6 +57,9 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
+	// ft_unset(ft_strdup("TERM_PROGRAM"));
+	// ft_export(ft_strdup("PATH=hola"));
+	// ft_env();
 	signal(SIGINT, c_handler);
 	signal(SIGQUIT, c_handler);
 	while (1)

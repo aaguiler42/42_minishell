@@ -49,9 +49,13 @@ void	print_env(void *list);
 
 //Env
 void	ft_get_env(char **env);
+char	*ft_get_env_value(char *env);
 void	ft_substitute_env(void *list_elem);
+void 	ft_add_one_env(char *env);
 
 //Builtins
 void	ft_env(void);
+void	ft_export(char *env);
+void	ft_unset(char *env_name);
 
 #endif

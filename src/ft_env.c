@@ -14,29 +14,35 @@
 
 extern t_list	*g_env_vars;
 
+void ft_add_one_env(char *env)
+{
+	char	*aux;
+	t_list	*list_aux;
+
+	aux = ft_strdup(env);
+	if (!aux)
+	{
+		ft_lstclear(&g_env_vars, free);
+		exit(1);
+	}
+	list_aux = ft_lstnew(aux);
+	if (!list_aux)
+	{
+		ft_lstclear(&g_env_vars, free);
+		free(aux);
+		exit(1);
+	}
+	ft_lstadd_back(&g_env_vars, list_aux);
+}
+
 void	ft_get_env(char **env)
 {
 	int		i;
-	char	*aux;
-	t_list	*list_aux;
 
 	i = 0;
 	while (env[i])
 	{
-		aux = ft_strdup(env[i]);
-		if (!aux)
-		{
-			ft_lstclear(&g_env_vars, free);
-			exit(1);
-		}
-		list_aux = ft_lstnew(aux);
-		if (!list_aux)
-		{
-			ft_lstclear(&g_env_vars, free);
-			free(aux);
-			exit(1);
-		}
-		ft_lstadd_back(&g_env_vars, list_aux);
+		ft_add_one_env(env[i]);
 		i++;
 	}
 }

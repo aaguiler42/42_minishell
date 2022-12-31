@@ -23,7 +23,7 @@ IS_FILES	:= $(addprefix $(IS_DIR)/, $(IS_NAMES))
 LST_DIR		:= ft_lst
 LST_NAMES	:= ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 			   ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize \
-			   ft_lstfind
+			   ft_lstfind ft_lstremove_if
 LST_FILES	:= $(addprefix $(LST_DIR)/, $(LST_NAMES)) 
 
 MEM_DIR		:= ft_mem
@@ -39,7 +39,7 @@ STR_DIR		:= ft_str
 STR_NAMES	:= ft_split ft_strchr ft_strdup ft_striteri ft_strjoin \
 		  	   ft_strlcat ft_strlcpy ft_strlen ft_strmapi ft_strncmp \
 			   ft_strnstr ft_strrchr ft_strtrim ft_substr \
-			   ft_strsome ft_strevery
+			   ft_strsome ft_strevery ft_strcmp
 STR_FILES	:= $(addprefix $(STR_DIR)/, $(STR_NAMES)) 
 
 TO_DIR		:= ft_to
