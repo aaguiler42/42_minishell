@@ -57,5 +57,7 @@ void 	ft_add_one_env(char *env);
 void	ft_env(void);
 void	ft_export(char *env);
 void	ft_unset(char *env_name);
+void	ft_pwd(void);
+void	ft_cd(char *path);
 
 #endif

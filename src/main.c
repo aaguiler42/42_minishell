@@ -60,6 +60,8 @@ int	main(int argc, char **argv, char **env)
 	// ft_unset(ft_strdup("TERM_PROGRAM"));
 	// ft_export(ft_strdup("PATH=hola"));
 	// ft_env();
+	// ft_pwd();
+	// ft_cd(ft_strdup("/"));
 	signal(SIGINT, c_handler);
 	signal(SIGQUIT, c_handler);
 	while (1)
