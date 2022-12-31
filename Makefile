@@ -18,10 +18,18 @@ RM			= rm -f
 all:	${NAME}
 
 %.o: %.c
+ifeq ($(shell uname), Linux)
+	${CC} ${CFLAGS} -o $@ -c $< -I libft
+else
 	${CC} ${CFLAGS} -o $@ -c $< ${INCLUDE}
+endif
 
 ${NAME}: ${OBJS}
+ifeq ($(shell uname), Linux)
+	${CC} ${OBJS} -L libft -l ft -lreadline -o ${NAME} -g
+else
 	${CC} ${OBJS} ${LIBS} -lreadline -o ${NAME} -g ${INCLUDES}
+endif
 
 clean:
 	${RM} ${OBJS}

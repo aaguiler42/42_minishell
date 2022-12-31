@@ -15,13 +15,11 @@
 int	ft_check_errors(char *line)
 {
 	int	quotes;
-	int	n_commands;
 	int	i;
 
 	if (line[0] == '|' || line[ft_strlen(line) - 1] == '|')
 		return (0);
 	quotes = 0;
-	n_commands = 1;
 	i = 0;
 	while (line[i])
 	{

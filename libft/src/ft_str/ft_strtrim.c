@@ -28,12 +28,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 		start++;
 	}
 	end = s1_len - 1;
-	while (end >= 0)
-	{
-		if (!ft_strchr(set, s1[end]))
-			break ;
+	while (ft_strchr(set, s1[end]))
 		end--;
-	}
 	end++;
 	str = ft_substr(s1, start, end - start);
 	return (str);

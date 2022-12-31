@@ -73,12 +73,10 @@ char	**ft_split(char const *s, char c)
 {
 	char	**words;
 	char	*start;
-	size_t	i;
 
 	words = ft_calloc(ft_count_words((char *) s, c), sizeof(char *));
 	if (!words)
 		return (0);
-	i = 0;
 	start = (char *) s;
 	while (*start && *start == c)
 		start++;

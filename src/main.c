@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <signal.h>
 
 t_list	*g_env_vars = NULL;
 
