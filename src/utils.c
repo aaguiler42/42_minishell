@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 12:14:09 by aaguiler         ###   ########.fr       */
+/*   Updated: 2022/12/31 18:58:32 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,12 +109,10 @@ t_list	*ft_get_commands(char *line)
 		if (!list_aux)
 		{
 			ft_lstclear(&commands, ft_free_list);
-			free(line);
-			return (NULL);
+			return (free(line), NULL);
 		}
 		ft_lstadd_back(&commands, list_aux);
 	}
-	free(line);
 	ft_lstiter(commands, ft_substitute_env);
-	return (commands);
+	return (free(line), commands);
 }

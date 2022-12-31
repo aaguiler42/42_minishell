@@ -48,6 +48,11 @@ void	ft_leaks(void)
 	system("leaks -q minishell");
 }
 
+// ft_unset(ft_strdup("TERM_PROGRAM"));
+// ft_export(ft_strdup("PATH=hola"));
+// ft_env();
+// ft_pwd();
+// ft_cd(ft_strdup("/"));
 int	main(int argc, char **argv, char **env)
 {
 	t_list	*commands;
@@ -57,11 +62,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
-	// ft_unset(ft_strdup("TERM_PROGRAM"));
-	// ft_export(ft_strdup("PATH=hola"));
-	// ft_env();
-	// ft_pwd();
-	// ft_cd(ft_strdup("/"));
 	signal(SIGINT, c_handler);
 	signal(SIGQUIT, c_handler);
 	while (1)
