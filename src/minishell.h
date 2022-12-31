@@ -45,9 +45,13 @@ char	*ft_strtrim_spaces_quotes(char *s);
 
 //Print
 void	print_list(void *list);
+void	print_env(void *list);
 
 //Env
 void	ft_get_env(char **env);
 void	ft_substitute_env(void *list_elem);
+
+//Builtins
+void	ft_env(void);
 
 #endif

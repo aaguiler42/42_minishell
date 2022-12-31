@@ -20,3 +20,11 @@ void	print_list(void *list)
 	command = (t_command *)list;
 	printf("%s\n", command->command);
 }
+
+void	print_env(void *list)
+{
+	char	*str;
+
+	str = (char *)list;
+	printf("%s\n", str);
+}
