@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 18:59:43 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/12/31 18:59:44 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:21:07 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_add_one_env(char *env)
 	if (!aux)
 	{
 		ft_lstclear(&g_env_vars, free);
+		// TODO COMPROBAR CON EXPORT
 		exit(1);
 	}
 	list_aux = ft_lstnew(aux);
@@ -30,6 +31,7 @@ void	ft_add_one_env(char *env)
 	{
 		ft_lstclear(&g_env_vars, free);
 		free(aux);
+		// TODO COMPROBAR CON EXPORT
 		exit(1);
 	}
 	ft_lstadd_back(&g_env_vars, list_aux);

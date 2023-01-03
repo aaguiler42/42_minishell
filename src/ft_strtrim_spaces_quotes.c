@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim_spaces_quotes.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 19:17:53 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 11:24:50 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:27:52 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ char	*ft_strtrim_spaces_quotes(char *line)
 		line = ft_eliminate_quotes_start(line);
 	if (line)
 		line = ft_eliminate_quotes_final(line);
+	//TODO: check with echo ""
 	return (line);
 }

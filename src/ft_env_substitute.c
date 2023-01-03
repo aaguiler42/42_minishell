@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_env_substitute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:06 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/24 13:52:10 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:52:03 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_substitute_env(void *list_elem)
 			content->command = ft_get_command_after_env(content->command);
 			if (!content->command)
 				content->command = ft_strdup("Malloc have failed");
+			// TODO: check break;
 			break ;
 		}
 		i++;

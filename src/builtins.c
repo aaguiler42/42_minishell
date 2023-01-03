@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:00:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/12/31 19:00:56 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:51:44 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,23 @@ void	ft_cd(char *path)
 
 	if (!path)
 	{
-		ft_printf("minishell: path to cd not set\n");
+		printf("minishell: path to cd not set\n");
 		return ;
 	}
 	if (chdir(path) == -1)
 	{
-		ft_printf("minishell: cd: %s: No such file or directory\n", path);
+		printf("minishell: cd: %s: No such file or directory\n", path);
 		return ;
 	}
 	getcwd(buffer, 300);
 	env = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
+	// TODO: comprobar malloc
 	ft_export(env);
+	// TODO: comprobar malloc
 	env = ft_strjoin("PWD=", buffer);
+	// TODO: comprobar malloc
 	ft_export(env);
+	// TODO: comprobar malloc
 }
 
 void	ft_echo(int argc, char **argv)
@@ -56,11 +60,11 @@ void	ft_echo(int argc, char **argv)
 	}
 	while (i < argc)
 	{
-		ft_printf("%s", argv[i]);
+		printf("%s", argv[i]);
 		if (i < argc - 1)
-			ft_printf(" ");
+			printf(" ");
 		i++;
 	}
 	if (!n)
-		ft_printf("\n");
+		printf("\n");
 }

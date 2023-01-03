@@ -6,12 +6,13 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/12/31 18:58:32 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 13:29:28 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+// TODO Mejorar mucho
 int	ft_check_errors(char *line)
 {
 	int	quotes;

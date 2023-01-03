@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 19:53:29 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 23:36:40 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 
 # define TYPE_FILE_READ 0
 # define TYPE_FILE_WRITE 1
-# define TYPE_COMMAND 2
+# define TYPE_COMMAND 3
 
 typedef struct s_command
 {
 	int			type;
 	char		*command;
 }	t_command;
+
+void pipex (t_list *commands, char **envp);
 
 //Utils
 int		ft_count_commands(char *line);

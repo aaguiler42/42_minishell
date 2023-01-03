@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2022/09/25 12:06:20 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:29:20 by ngonzale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ char	*ft_get_line(void)
 	if (!line)
 		return (NULL);
 	add_history(line);
+	// TODO: Hacer que no se añada al historial si es un comando vacío y heredoc tampoco
 	line = ft_strtrim_spaces_quotes(line);
 	if (!line)
 		return (NULL);
@@ -53,12 +54,12 @@ void	ft_leaks(void)
 // ft_env();
 // ft_pwd();
 // ft_cd(ft_strdup("/"));
+// atexit(ft_leaks);
 int	main(int argc, char **argv, char **env)
 {
 	t_list	*commands;
 	char	*line;
 
-	atexit(ft_leaks);
 	(void)argc;
 	(void)argv;
 	ft_get_env(env);
@@ -72,8 +73,8 @@ int	main(int argc, char **argv, char **env)
 		commands = ft_get_commands(line);
 		if (!commands && line[0])
 			break ;
-		ft_lstiter(commands, print_list);
-		// Aquí se ejecutan los comandos
+		// ft_lstiter(commands, print_list);
+		pipex(commands, env);
 		ft_lstclear(&commands, ft_free_list);
 	}
 	ft_lstclear(&g_env_vars, free);
