@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/21 19:42:53 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/04/21 22:52:59 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/03 22:57:45 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

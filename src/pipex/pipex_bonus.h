@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:15:27 by narso             #+#    #+#             */
-/*   Updated: 2023/01/02 23:36:42 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/03 22:59:51 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,7 @@
 # define PIPEX_BONUS_H
 
 # include "libft.h"
-
-# define TYPE_FILE_READ 0
-# define TYPE_FILE_WRITE 1
-# define TYPE_FILE_APPEND 2
-# define TYPE_COMMAND 3
-
-typedef struct s_command {
-	char	*path;
-	char	**args;
-	int		type;
-	int		fd_input;
-	int		fd_output;
-	char	*here_doc;
-	char *command;
-}		t_command;
+# include "../minishell.h"
 
 // Checker
 char	*ft_check_args(int argc, char **argv);

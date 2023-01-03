@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:16:53 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/26 19:48:02 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 00:00:27 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_exec_child(t_command *command, int ptc[2], int ctp[2], char **envp)
 	if (!command->path)
 		command->path = ft_strdup("");
 	execve(command->path, command->args, envp);
-	perror("execve");
 	exit(EXIT_FAILURE);
 }
 

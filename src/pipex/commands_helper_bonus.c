@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_helper_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/21 17:31:05 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/02 23:36:53 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 00:11:29 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

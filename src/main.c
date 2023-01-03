@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 21:29:20 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 00:01:54 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	main(int argc, char **argv, char **env)
 			break ;
 		// ft_lstiter(commands, print_list);
 		pipex(commands, env);
-		ft_lstclear(&commands, ft_free_list);
+		// ft_lstclear(&commands, ft_free_list);
 	}
 	ft_lstclear(&g_env_vars, free);
 	clear_history();

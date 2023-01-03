@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: nonzale <ngonzale@student.42malaga.comm    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:21:13 by narso             #+#    #+#             */
-/*   Updated: 2023/01/02 23:36:38 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/03 23:31:18 by ngonzle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	ft_execute_commands(t_list *commands, char **envp)
 {
 	t_list		*cur_command;
 
-	printf("Executing commands");
 	cur_command = commands;
 	while (cur_command)
 	{
-		printf("eee\n");
 		ft_execute_command(cur_command, envp);
 		cur_command = cur_command->next;
 	}
@@ -55,17 +53,43 @@ char **env_vars;
 
 void *change_command(void *content) {
 	t_command *command;
+	t_list		*new_commands;
 
 	command = (t_command *)content;
-	return (ft_create_command_pipex(command->command, command->type, env_vars, NULL));
+	new_commands = ft_create_command_pipex(command->command, command->type, env_vars, NULL);
+	return ((void *)new_commands);
 }
 
 void pipex (t_list *commands, char **envp)
 {
-	t_list *new_commands;
+	// t_list *new_commands;
+	t_list *lst;
+	// t_list *lst_2;
+	t_list *tmp;
+	t_list *tmp2;
+	// t_command *tmp2_content;
 
+(void)commands;
 	env_vars = ft_get_env_paths(envp);
-	new_commands = ft_lstmap(commands, change_command, ft_free_command);
-	ft_lstclear(&commands, ft_free_command);
-	ft_execute_commands(new_commands, envp);
+	// ft_lstiter(commands, print_list);
+	// new_commands = ft_lstmap(commands, change_command, ft_free_command);
+	tmp = commands;
+	lst = ft_create_command_pipex((((t_command *)(tmp->content))->command), 3, env_vars, NULL);
+	tmp = tmp->next;
+	while (tmp)
+	{
+		ft_printf("command: %s\n", (((t_command *)(tmp->content))->command));
+		tmp2 = ft_create_command_pipex((((t_command *)(tmp->content))->command), 3, env_vars, NULL);
+		ft_lstadd_back(&lst, tmp2);
+		tmp = tmp->next;
+	}
+	// lst = ft_create_command_pipex("ls", 3, env_vars, NULL);
+	// lst_2 = ft_create_command_pipex("wc", 3, env_vars, NULL);
+	// ft_lstclear(&commands, ft_free_command);
+	// printf("%p\n", new_commands->content);
+	// printf("TT |%s|\n", ((t_command *)(lst->content))->command);
+	// printf("pa ti mi cola\n");
+	// ft_lstiter(new_commands, print_list);
+	// ft_lstadd_back(&lst, lst_2);
+	ft_execute_commands(lst, envp);
 }

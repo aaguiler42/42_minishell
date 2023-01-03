@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:17:50 by narso             #+#    #+#             */
-/*   Updated: 2023/01/03 22:18:33 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 00:00:58 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@ void	ft_open_file_to_read(t_list *lstcommand)
 	int			fd;
 
 	command = (t_command *)lstcommand->content;
+	if (!lstcommand->next)
+		return ;
+	printf("HOLAA");
 	next_command = (t_command *)lstcommand->next->content;
 	if (command->here_doc)
 		next_command->here_doc = command->here_doc;
@@ -80,13 +83,13 @@ void	ft_execute_command(t_list *lstcommand, char **envp)
 {
 	t_command	*command;
 	t_command	*next_command;
+	int buffer;
+	int written;
 
 	command = (t_command *)lstcommand->content;
 	next_command = NULL;
-	printf("HOLAA");
 	if (lstcommand->next)
 		next_command = (t_command *)lstcommand->next->content;
-	printf("HOLAA");
 	if (command->type == TYPE_FILE_READ)
 		ft_open_file_to_read(lstcommand);
 	else if (command->type == TYPE_COMMAND)
@@ -101,6 +104,15 @@ void	ft_execute_command(t_list *lstcommand, char **envp)
 		{
 			command->fd_output = -1;
 			next_command->fd_input = ft_exec(command, envp);
+		}
+		else {
+		buffer = ft_exec(command, envp);
+			
+			while(read(buffer, &written, 1) > 0)
+			{
+					write(1, &written, 1);
+			}
+			 close(buffer);
 		}
 	}
 }

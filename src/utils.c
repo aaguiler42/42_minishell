@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 13:29:28 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/03 22:47:18 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,16 @@ t_list	*ft_create_command(char *line, int start, int len)
 		free(bare_command);
 		return (NULL);
 	}
+	char *bare_path = malloc(sizeof(char) * 1);
+	char **bare_args = malloc(sizeof(char *) * 1);
+	char *bare_here_doc = malloc(sizeof(char) * 1);
 	command->type = TYPE_COMMAND;
 	command->command = bare_command;
+	command->path = bare_path;
+	command->args = bare_args;
+	command->fd_input = 0;
+	command->fd_output = 0;
+	command->here_doc = bare_here_doc;
 	list_aux = ft_lstnew(command);
 	if (!list_aux)
 	{
