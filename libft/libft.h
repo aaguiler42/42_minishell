@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/18 20:35:52 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/22 19:05:17 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:30:10 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 t_list	*ft_lstfind(t_list *lst, void *content);
 void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)());
+t_list	*ft_lstfind_fn(t_list *lst, void *data_ref, int (*cmp)());
 
 int		ft_printf(const char *str, ...);
 

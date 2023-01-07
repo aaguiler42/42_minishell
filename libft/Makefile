@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+         #
+#    By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/20 17:51:10 by ngonzale          #+#    #+#              #
-#    Updated: 2022/09/22 19:06:11 by aaguiler         ###   ########.fr        #
+#    Updated: 2023/01/04 18:29:34 by aaguiler         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ IS_FILES	:= $(addprefix $(IS_DIR)/, $(IS_NAMES))
 LST_DIR		:= ft_lst
 LST_NAMES	:= ft_lstadd_back ft_lstadd_front ft_lstclear ft_lstdelone \
 			   ft_lstiter ft_lstlast ft_lstmap ft_lstnew ft_lstsize \
-			   ft_lstfind ft_lstremove_if
+			   ft_lstfind ft_lstremove_if ft_lstfind_fn
 LST_FILES	:= $(addprefix $(LST_DIR)/, $(LST_NAMES)) 
 
 MEM_DIR		:= ft_mem

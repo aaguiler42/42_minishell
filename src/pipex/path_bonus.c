@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path.c                                             :+:      :+:    :+:   */
+/*   path_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com>   +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:47:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2022/09/22 18:38:08 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:37:20 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <unistd.h>
 #include <stdlib.h>
+
+extern t_list	*g_env_vars;
 
 char	*ft_path_is_ok(char *command, char *env_path)
 {
@@ -55,20 +57,15 @@ char	*ft_find_path(char *command, char **env_paths)
 	return (path);
 }
 
-char	**ft_get_env_paths(char **envp)
+char	**ft_get_env_paths(void)
 {
-	char	**ptr;
+	char	*path;
 	char	**paths;
 
-	ptr = envp;
-	while (*ptr)
-	{
-		if (!ft_strncmp(*ptr, "PATH=", 5))
-		{
-			paths = ft_split(*ptr + 5, ':');
-			return (paths);
-		}
-		ptr++;
-	}
+	path = ft_lstfind_fn(g_env_vars, "PATH=", ft_strncmp)->content;
+	if (path)
+		paths = ft_split(path + 5, ':');
+	if (paths)
+		return (paths);
 	return (ft_calloc(1, sizeof(char *)));
 }

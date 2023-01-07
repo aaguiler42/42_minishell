@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:15:27 by narso             #+#    #+#             */
-/*   Updated: 2023/01/03 22:59:51 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/04 18:19:57 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_parse_command(char *arg);
 int		ft_exec(t_command *command, char **envp);
 
 // Path
-char	**ft_get_env_paths(char **envp);
+char	**ft_get_env_paths(void);
 char	*ft_find_path(char *command, char **env_paths);
 
 #endif
