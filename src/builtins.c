@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:00:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/07 18:58:55 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:30:50 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	ft_cd(char *path)
 		printf("minishell: cd: %s: No such file or directory\n", path);
 		return ;
 	}
-	old_pwd = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
+	// old_pwd = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
 	// TODO: comprobar malloc
 	// ft_export(old_pwd);
 	// TODO: comprobar malloc
