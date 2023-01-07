@@ -15,6 +15,8 @@
 #include <unistd.h>
 #include <stdio.h>
 
+extern t_list	*g_env_vars;
+
 void	ft_execute_commands(t_list *commands, char **envp)
 {
 	t_list		*cur_command;
@@ -27,15 +29,14 @@ void	ft_execute_commands(t_list *commands, char **envp)
 	}
 }
 
-char **env_vars;
 
 void pipex (t_list *commands, char **envp)
 {
-	t_list *lst;
-	t_list *tmp;
-	t_list *tmp2;
+	t_list	*lst;
+	t_list	*tmp;
+	t_list	*tmp2;
+	char		**env_vars;
 
-	(void)commands;
 	env_vars = ft_get_env_paths();
 	tmp = commands;
 	lst = ft_create_command_pipex((((t_command *)(tmp->content))->command), 3, env_vars, NULL);

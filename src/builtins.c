@@ -3,27 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:00:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 13:51:44 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:58:55 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_pwd(void)
+char	*ft_pwd(int printable)
 {
-	char	buffer[300];
+	char	*buffer;
 
+	buffer = ft_calloc(300, 1);
 	getcwd(buffer, 300);
-	printf("%s\n", buffer);
+	if (printable)
+	{
+		printf("%s\n", buffer);
+		free(buffer);
+		return (NULL);
+	}
+	return (buffer);
 }
 
 void	ft_cd(char *path)
 {
-	char	buffer[300];
-	char	*env;
+	// char	*pwd;
+	// char	*old_pwd;
+	// char	*buffer;
 
 	if (!path)
 	{
@@ -35,33 +43,35 @@ void	ft_cd(char *path)
 		printf("minishell: cd: %s: No such file or directory\n", path);
 		return ;
 	}
-	getcwd(buffer, 300);
-	env = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
+	old_pwd = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
 	// TODO: comprobar malloc
-	ft_export(env);
+	// ft_export(old_pwd);
 	// TODO: comprobar malloc
-	env = ft_strjoin("PWD=", buffer);
+	// buffer = ft_pwd(0);
 	// TODO: comprobar malloc
-	ft_export(env);
+	// pwd = ft_strjoin("PWD=", buffer);
+	// ft_printf("PWD: %s\n", pwd);
+	// TODO: comprobar malloc
+	// ft_export(pwd);
 	// TODO: comprobar malloc
 }
 
-void	ft_echo(int argc, char **argv)
+void	ft_echo(char **argv)
 {
 	int	i;
 	int	n;
 
 	n = 0;
 	i = 1;
-	if (argc > 1 && !ft_strcmp(argv[1], "-n"))
+	if (argv[1] && !ft_strcmp(argv[1], "-n"))
 	{
 		n = 1;
 		i++;
 	}
-	while (i < argc)
+	while (argv[i])
 	{
 		printf("%s", argv[i]);
-		if (i < argc - 1)
+		if (argv[i + 1])
 			printf(" ");
 		i++;
 	}

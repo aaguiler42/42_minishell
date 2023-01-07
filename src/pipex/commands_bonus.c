@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:17:50 by narso             #+#    #+#             */
-/*   Updated: 2023/01/04 00:00:58 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:57:17 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_open_file_to_read(t_list *lstcommand)
 	command = (t_command *)lstcommand->content;
 	if (!lstcommand->next)
 		return ;
-	printf("HOLAA");
 	next_command = (t_command *)lstcommand->next->content;
 	if (command->here_doc)
 		next_command->here_doc = command->here_doc;

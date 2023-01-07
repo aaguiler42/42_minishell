@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:16:53 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/04 00:00:27 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/07 18:24:343 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,48 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "pipex_bonus.h"
+
+extern t_list	*g_env_vars;
+
+int	ft_is_builtin(char *command)
+{
+	if (!ft_strncmp(command, "echo", 4))
+		return (1);
+	if (!ft_strncmp(command, "cd", 2))
+		return (0);
+	if (!ft_strncmp(command, "pwd", 3))
+		return (1);
+	if (!ft_strncmp(command, "export", 6))
+		return (0);
+	if (!ft_strncmp(command, "unset", 5))
+		return (0);
+	if (!ft_strncmp(command, "env", 3))
+		return (1);
+	if (!ft_strncmp(command, "exit", 4))
+		return (0);
+	return (-1);
+}
+
+void	ft_execute_builtin(t_command *command)
+{
+	if (!ft_strncmp(command->args[0], "echo", 4))
+		ft_echo(command->args);
+	if (!ft_strncmp(command->args[0], "cd", 2))
+		ft_cd(command->args[1]);
+	if (!ft_strncmp(command->args[0], "pwd", 3))
+		ft_pwd(1);
+	if (!ft_strncmp(command->args[0], "export", 6))
+		ft_export(command->args[1]);
+	if (!ft_strncmp(command->args[0], "unset", 5))
+	{
+		ft_unset(command->args[1]);
+	}
+	if (!ft_strncmp(command->args[0], "env", 3))
+		ft_env();
+	if (!ft_strncmp(command->args[0], "exit", 4))
+		exit(1);
+	// Memory leak
+}
 
 void	ft_exec_child(t_command *command, int ptc[2], int ctp[2], char **envp)
 {
@@ -27,9 +69,22 @@ void	ft_exec_child(t_command *command, int ptc[2], int ctp[2], char **envp)
 		dup2(command->fd_output, STDOUT_FILENO);
 	else
 		dup2(ctp[1], STDOUT_FILENO);
-	if (!command->path)
-		command->path = ft_strdup("");
-	execve(command->path, command->args, envp);
+	if (ft_is_builtin(command->args[0]) == 1)
+	{
+		ft_execute_builtin(command);
+		exit(EXIT_SUCCESS);
+	}
+	else
+	{
+		if (!command->path)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd(command->args[0], 2);
+			ft_putstr_fd(": command not found\n", 2);
+			command->path = ft_strdup("");
+		}
+		execve(command->path, command->args, envp);
+	}
 	exit(EXIT_FAILURE);
 }
 
@@ -60,7 +115,12 @@ int	ft_exec(t_command *command, char **envp)
 	pid_t	pid;
 	int		ptc[2];
 	int		ctp[2];
-
+	
+	if (ft_is_builtin(command->args[0]) == 0)
+	{
+		ft_execute_builtin(command);
+		return (-1);
+	}
 	if (pipe(ptc) == -1)
 		return (-1);
 	if (pipe(ctp) == -1)

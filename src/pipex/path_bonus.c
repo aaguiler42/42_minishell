@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:47:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/04 18:37:20 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/07 17:40:46 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,13 @@ char	*ft_find_path(char *command, char **env_paths)
 
 char	**ft_get_env_paths(void)
 {
-	char	*path;
-	char	**paths;
+	t_list	*lst;
+	char		*path;
+	char		**paths;
 
-	path = ft_lstfind_fn(g_env_vars, "PATH=", ft_strncmp)->content;
+	lst = ft_lstfind_fn(g_env_vars, "PATH=", ft_strncmp);
+	if (lst)
+		path = lst->content;
 	if (path)
 		paths = ft_split(path + 5, ':');
 	if (paths)

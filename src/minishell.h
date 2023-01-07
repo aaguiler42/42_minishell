@@ -6,7 +6,7 @@
 /*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/03 22:44:53 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/07 13:25:31 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct s_command {
 	int		fd_input;
 	int		fd_output;
 	char	*here_doc;
-	char *command;
+	char	*command;
 }		t_command;
 
 void pipex (t_list *commands, char **envp);
@@ -64,8 +64,8 @@ void	ft_add_one_env(char *env);
 void	ft_env(void);
 void	ft_export(char *env);
 void	ft_unset(char *env_name);
-void	ft_pwd(void);
+char	*ft_pwd(int printable);
 void	ft_cd(char *path);
-void	ft_echo(int argc, char **argv);
+void	ft_echo(char **argv);
 
 #endif
