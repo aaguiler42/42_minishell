@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commands_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/30 14:17:50 by narso             #+#    #+#             */
-/*   Updated: 2023/01/07 18:57:17 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:12:11 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 
 t_list	*ft_get_commands_helper(t_list **commands);
 
-t_list	*ft_get_commands_pipex(char **argv, int argc, char **env_paths, char *limiter)
+t_list	*ft_get_commands_pipex(char **argv, int argc,
+	char **env_paths, char *limiter)
 {
 	t_list	*commands;
 	t_list	*aux;
@@ -82,8 +83,8 @@ void	ft_execute_command(t_list *lstcommand, char **envp)
 {
 	t_command	*command;
 	t_command	*next_command;
-	int buffer;
-	int written;
+	int			buffer;
+	int			written;
 
 	command = (t_command *)lstcommand->content;
 	next_command = NULL;
@@ -104,14 +105,12 @@ void	ft_execute_command(t_list *lstcommand, char **envp)
 			command->fd_output = -1;
 			next_command->fd_input = ft_exec(command, envp);
 		}
-		else {
-		buffer = ft_exec(command, envp);
-			
-			while(read(buffer, &written, 1) > 0)
-			{
-					write(1, &written, 1);
-			}
-			 close(buffer);
+		else
+		{
+			buffer = ft_exec(command, envp);
+			while (read(buffer, &written, 1) > 0)
+				write(1, &written, 1);
+			close(buffer);
 		}
 	}
 }

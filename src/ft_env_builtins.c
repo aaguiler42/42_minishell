@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_builtins.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:00:35 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 13:52:02 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:47:31 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_list	*g_env_vars;
+extern t_all	*g_all;
 
 void	ft_env(void)
 {
-	ft_lstiter(g_env_vars, print_env);
+	ft_lstiter((g_all)->env_list, print_env);
 }
 
 // This function recieves a string like "PATH=/bin"
@@ -66,6 +66,6 @@ void	ft_unset(char *env_name)
 	// TODO check malloc
 	free(aux);
 	free(previous_value);
-	ft_list_remove_if(&g_env_vars, full_env, ft_strcmp);
+	ft_list_remove_if(&(g_all)->env_list, full_env, ft_strcmp);
 	free(full_env);
 }

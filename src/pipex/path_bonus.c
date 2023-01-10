@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   path_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:47:33 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/07 17:40:46 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:05:56 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../minishell.h"
 #include <unistd.h>
 #include <stdlib.h>
 
-extern t_list	*g_env_vars;
+extern t_all	*g_all;
 
 char	*ft_path_is_ok(char *command, char *env_path)
 {
@@ -60,14 +61,16 @@ char	*ft_find_path(char *command, char **env_paths)
 char	**ft_get_env_paths(void)
 {
 	t_list	*lst;
-	char		*path;
-	char		**paths;
+	char	*path;
+	char	**paths;
 
-	lst = ft_lstfind_fn(g_env_vars, "PATH=", ft_strncmp);
-	if (lst)
-		path = lst->content;
-	if (path)
-		paths = ft_split(path + 5, ':');
+	lst = ft_lstfind_fn((g_all)->env_list, "PATH=", ft_strncmp);
+	if (!lst)
+		return (ft_calloc(1, sizeof(char *)));
+	path = lst->content;
+	if (!path)
+		return (ft_calloc(1, sizeof(char *)));
+	paths = ft_split(path + 5, ':');
 	if (paths)
 		return (paths);
 	return (ft_calloc(1, sizeof(char *)));

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 18:59:43 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 13:21:07 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:46:38 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_list	*g_env_vars;
+extern t_all	*g_all;
 
-void	ft_add_one_env(char *env)
+int	ft_add_one_env(char *env)
 {
 	char	*aux;
 	t_list	*list_aux;
@@ -22,19 +22,20 @@ void	ft_add_one_env(char *env)
 	aux = ft_strdup(env);
 	if (!aux)
 	{
-		ft_lstclear(&g_env_vars, free);
+		ft_lstclear(&(g_all)->env_list, free);
 		// TODO COMPROBAR CON EXPORT
-		exit(1);
+		return (0);
 	}
 	list_aux = ft_lstnew(aux);
 	if (!list_aux)
 	{
-		ft_lstclear(&g_env_vars, free);
+		ft_lstclear(&(g_all)->env_list, free);
 		free(aux);
 		// TODO COMPROBAR CON EXPORT
-		exit(1);
+		return (0);
 	}
-	ft_lstadd_back(&g_env_vars, list_aux);
+	ft_lstadd_back(&(g_all)->env_list, list_aux);
+	return (1);
 }
 
 char	*ft_get_env_value(char *env)
@@ -44,7 +45,7 @@ char	*ft_get_env_value(char *env)
 	int		len;
 
 	len = 0;
-	env_vars = g_env_vars;
+	env_vars = (g_all)->env_list;
 	while (env_vars)
 	{
 		content = ((char *)env_vars->content);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 17:16:53 by ngonzale          #+#    #+#             */
-/*   Updated: 2023/01/07 18:24:343 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:09:13 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "pipex_bonus.h"
 
-extern t_list	*g_env_vars;
+extern t_all	*g_all;
 
 int	ft_is_builtin(char *command)
 {
@@ -115,7 +115,7 @@ int	ft_exec(t_command *command, char **envp)
 	pid_t	pid;
 	int		ptc[2];
 	int		ctp[2];
-	
+
 	if (ft_is_builtin(command->args[0]) == 0)
 	{
 		ft_execute_builtin(command);

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 15:53:20 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/04 18:10:55 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:05:02 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <signal.h>
 
-t_list	*g_env_vars = NULL;
+t_all	*g_all = NULL;
 
 void	c_handler(int dummy)
 {
@@ -49,20 +49,13 @@ void	ft_leaks(void)
 	system("leaks -q minishell");
 }
 
-// ft_unset(ft_strdup("TERM_PROGRAM"));
-// ft_export(ft_strdup("PATH=hola"));
-// ft_env();
-// ft_pwd();
-// ft_cd(ft_strdup("/"));
-// atexit(ft_leaks);
 int	main(int argc, char **argv, char **env)
 {
-	t_list	*commands;
 	char	*line;
 
-	(void)argc;
-	(void)argv;
-	ft_get_env(env);
+	// atexit(ft_leaks);
+	if (!ft_init(argc, argv, env))
+		return (1);
 	signal(SIGINT, c_handler);
 	signal(SIGQUIT, c_handler);
 	while (1)
@@ -70,13 +63,13 @@ int	main(int argc, char **argv, char **env)
 		line = ft_get_line();
 		if (!line)
 			break ;
-		commands = ft_get_commands(line);
-		if (!commands && line[0])
+		if (!ft_get_commands(line) && line[0])
 			break ;
-		// ft_lstiter(commands, print_list);
-		pipex(commands, env);
+		// ft_lstiter((g_all)->commands, print_list);
+		if ((g_all)->commands)
+			pipex((g_all)->commands);
 		// ft_lstclear(&commands, ft_free_list);
 	}
-	ft_lstclear(&g_env_vars, free);
+	// ft_lstclear(&(g_all)->env_list, free);
 	clear_history();
 }

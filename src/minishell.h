@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:12:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/07 13:25:31 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:13:35 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # define TYPE_FILE_APPEND 2
 # define TYPE_COMMAND 3
 
+typedef struct s_all {
+	t_list	*commands;
+	char	**env;
+	t_list	*env_list;
+}		t_all;
+
 typedef struct s_command {
 	char	*path;
 	char	**args;
@@ -35,13 +41,14 @@ typedef struct s_command {
 	char	*command;
 }		t_command;
 
-void pipex (t_list *commands, char **envp);
+void	pipex(t_list *commands);
 
 //Utils
 int		ft_count_commands(char *line);
 int		ft_get_command_len(char *line, int start);
-t_list	*ft_get_commands(char *line);
+int		ft_get_commands(char *line);
 int		ft_check_errors(char *line);
+int		ft_init(int argc, char **argv, char **env);
 
 //Free
 char	**ft_free_line(char *line);
@@ -55,10 +62,10 @@ void	print_list(void *list);
 void	print_env(void *list);
 
 //Env
-void	ft_get_env(char **env);
+int		ft_get_env(int argc, char **argv, char **env);
 char	*ft_get_env_value(char *env);
 void	ft_substitute_env(void *list_elem);
-void	ft_add_one_env(char *env);
+int		ft_add_one_env(char *env);
 
 //Builtins
 void	ft_env(void);

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/16 16:14:48 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/07 17:40:46 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:13:05 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern t_all	*g_all;
 
 // TODO Mejorar mucho
 int	ft_check_errors(char *line)
@@ -78,8 +80,8 @@ t_list	*ft_create_command(char *line, int start, int len)
 		free(bare_command);
 		return (NULL);
 	}
-	char **bare_args = malloc(sizeof(char *) * 1);
-	char *bare_here_doc = malloc(sizeof(char) * 1);
+	char	**bare_args = malloc(sizeof(char *) * 1);
+	char	*bare_here_doc = malloc(sizeof(char) * 1);
 	command->type = TYPE_COMMAND;
 	command->command = bare_command;
 	command->path = NULL;
@@ -97,16 +99,15 @@ t_list	*ft_create_command(char *line, int start, int len)
 	return (list_aux);
 }
 
-t_list	*ft_get_commands(char *line)
+int	ft_get_commands(char *line)
 {
-	t_list		*commands;
 	t_list		*list_aux;
 	int			start;
 	int			len;
 
 	start = 0;
 	len = 0;
-	commands = NULL;
+	(g_all)->commands = NULL;
 	while (line[start + len])
 	{
 		start += len;
@@ -116,11 +117,11 @@ t_list	*ft_get_commands(char *line)
 		list_aux = ft_create_command(line, start, len);
 		if (!list_aux)
 		{
-			ft_lstclear(&commands, ft_free_list);
-			return (free(line), NULL);
+			ft_lstclear(&(g_all)->commands, ft_free_list);
+			return (free(line), 0);
 		}
-		ft_lstadd_back(&commands, list_aux);
+		ft_lstadd_back(&(g_all)->commands, list_aux);
 	}
-	ft_lstiter(commands, ft_substitute_env);
-	return (free(line), commands);
+	ft_lstiter((g_all)->commands, ft_substitute_env);
+	return (free(line), 1);
 }

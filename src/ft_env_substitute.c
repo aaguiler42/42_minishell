@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_env_substitute.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ngonzale <ngonzale@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 20:34:06 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/02 13:52:03 by ngonzale         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:49:04 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-extern t_list	*g_env_vars;
+extern t_all	*g_all;
 
 char	*ft_get_cmd(char *command, int cont, int len, char *env)
 {

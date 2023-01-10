@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaguiler < aaguiler@student.42malaga.co    +#+  +:+       +#+        */
+/*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/31 19:00:55 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/07 19:30:50 by aaguiler         ###   ########.fr       */
+/*   Updated: 2023/01/10 17:15:24 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ char	*ft_pwd(int printable)
 
 void	ft_cd(char *path)
 {
-	// char	*pwd;
-	// char	*old_pwd;
-	// char	*buffer;
+	char	*pwd;
+	char	*old_pwd;
+	char	*buffer;
 
 	if (!path)
 	{
@@ -43,16 +43,15 @@ void	ft_cd(char *path)
 		printf("minishell: cd: %s: No such file or directory\n", path);
 		return ;
 	}
-	// old_pwd = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
+	old_pwd = ft_strjoin("OLDPWD=", ft_get_env_value("PWD"));
 	// TODO: comprobar malloc
-	// ft_export(old_pwd);
+	ft_export(old_pwd);
 	// TODO: comprobar malloc
-	// buffer = ft_pwd(0);
+	buffer = ft_pwd(0);
 	// TODO: comprobar malloc
-	// pwd = ft_strjoin("PWD=", buffer);
-	// ft_printf("PWD: %s\n", pwd);
+	pwd = ft_strjoin("PWD=", buffer);
 	// TODO: comprobar malloc
-	// ft_export(pwd);
+	ft_export(pwd);
 	// TODO: comprobar malloc
 }
 

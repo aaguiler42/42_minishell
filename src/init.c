@@ -1,32 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstremove_if.c                                  :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aaguiler <aaguiler@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 17:05:30 by aaguiler          #+#    #+#             */
-/*   Updated: 2023/01/10 17:05:31 by aaguiler         ###   ########.fr       */
+/*   Created: 2023/01/10 16:34:49 by aaguiler          #+#    #+#             */
+/*   Updated: 2023/01/10 17:14:04 by aaguiler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "minishell.h"
 
-void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)())
+extern t_all	*g_all;
+
+int	ft_init(int argc, char **argv, char **env)
 {
-	t_list	*cur;
-
-	if (!begin_list || !(*begin_list))
-		return ;
-	cur = *begin_list;
-	if (cmp(cur->content, data_ref) == 0)
-	{
-		*begin_list = cur->next;
-		free(cur->content);
-		free(cur);
-		return ;
-	}
-	cur = *begin_list;
-	ft_list_remove_if(&cur->next, data_ref, cmp);
+	g_all = malloc(sizeof(t_all));
+	if (!g_all)
+		return (0);
+	if (!ft_get_env(argc, argv, env))
+		return (0);
+	return (1);
 }
